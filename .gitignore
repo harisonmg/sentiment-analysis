@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Sample tweets
+tweets.json
+
+# VS Code settings
+.vscode/
