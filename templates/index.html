@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <form class="container col-md-6" method="POST" action="predict">
+    <legend>Sentiment Analysis</legend>
+    <div class="form-group">
+      <textarea name="text-area" class="form-control" rows="3" placeholder="Enter some text here"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Get Prediction</button>
+  </form>  
+{% endblock content %}

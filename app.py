@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 import gzip
 import dill
@@ -6,20 +6,25 @@ import dill
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
-    return 'Hello'
+    """
+    Present a form for submitting some text for 
+    sentiment prediction
+    """
+    return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return 'This page is all about my ML model'
 
-@app.route('/predict', methods=['GET'])
+@app.route('/predict', methods=['GET', 'POST'])
 def predict():
     """
     Show prediction of the sentiment of a tweet input by a user
     """
-    tweet = request.args.get('tweet')
+    if request.method == 'GET':
+        tweet = request.args.get('tweet')
+
+    else:
+        tweet = request.form['text-area']
 
     # load persistent model
     with gzip.open('sentiment_model.dill.gz', 'rb') as f:
@@ -28,7 +33,7 @@ def predict():
     # predict the sentiment of the tweet
     proba = model.predict_proba([tweet])[0, 1]
 
-    return 'Probability of being a positive sentiment: {}'.format(proba)
+    return render_template('predict.html', proba=proba)
 
 
 if __name__ == '__main__':
