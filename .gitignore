@@ -133,3 +133,6 @@ tweets.json
 
 # VS Code settings
 .vscode/
+
+# training data
+data/
