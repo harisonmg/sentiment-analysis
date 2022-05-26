@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+numpy = "*"
+pandas = "*"
+scikit-learn = "*"
+spacy = "*"
+dill = "*"
+Flask = "*"
+gunicorn = "*"
+
+[dev-packages]
+gunicorn = "jupyter"
+
+[requires]
